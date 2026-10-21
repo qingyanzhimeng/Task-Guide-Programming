@@ -39,33 +39,84 @@ void print_client_fd(std::map<int,client_address> & _map,time_t & _last_time)
 }
 
 
-void  communction(std::map<int,client_address>& client_map,int& client_fd)
+void  communction(std::map<std::string,std::string> & knowladge_base,std::map<int,client_address>& client_map,int& client_fd)
 {
+    
     //与单个客户端进行一个对话
     char buffer[1024];
     memset(buffer,0,sizeof(buffer));
     //循环接收数据
     ssize_t len=0;
+    std::string pending;//待定区域
+    std::string command;
     while(true)
     {
         len=recv(client_fd,buffer,sizeof(buffer),0);
         if(len>0)
         {
-            //这里表示收到了数据
-            // buffer[len]='\0';
-            // std::cout<<"client:"<<buffer<<std::endl;
-            std::cout<<"client:";
-            std::cout.write(buffer,len);
-            std::cout<<std::endl;
+            //定义一个接受暂存区
+            pending.append(buffer,len);
+            //每次追加完成,我们需要判断我们追加的数据中有没有我们想要的完整的客户端指令
+            size_t pos1=pending.find('\n');
+            //判断返回值是否合规
+            if(pos1!=std::string::npos)
+            {
+                //找到一条完整的指令内容
+                command=pending.substr(0,pos1);
+                //然后判断最后一个字符是不是'\r'
+                if(command.back()=='\r')
+                {
+                    //去除这个最后一个字符
+                    command.pop_back(); 
+                }
+                ssize_t len2=0;
+                size_t sent=0;
+                //查找知识库是否存在
+                auto it=knowladge_base.find(command);
+                if(it!=knowladge_base.end())
+                {
+                    std::string mid=it->second+'\n';
+                    //存在
+                    while(sent<mid.size())
+                    {
+                        len2=send(client_fd,mid.c_str()+sent,mid.size()-sent,0);
+                        if(len2<=0)
+                        {
+                            std::perror("send error");
+                            break;
+                        }
+                        sent+=len2;
+                    }
+                }
+                else
+                {
+                    //不存在,返回不存在的内容
+                    command="not exist\n";
+                    size_t size=command.size();
+                    while(sent<size)
+                    {
+                        len2=send(client_fd,command.c_str()+sent,size-sent,0);
+                        if(len2<=0)
+                        {
+                            std::perror("send error");
+                            break;
+                        }
+                        sent+=len2;
+                    }
+                }
+                //不管是否在知识库中找到了对应的关键词,这个时候都要更新一下pending
+                pending.erase(0,pos1+1);
+            }
         }
         else if(len==0)
         {
             //这里证明出现了错误,我们要根据错误类型进行一个处理
-            perror("communction have error");
+            std::cout<<"client shutdown"<<std::endl;
             break;
         }
         else
         {
+            perror("communction have error");
             break;
         }
     }
@@ -110,6 +161,8 @@ public:
                 {
                     std::cout<<"bind success"<<std::endl;
                     _status=true;
+                    //调用知识库,进行一个初始化
+                    init_Knowledge_Base();
                 }
             }
             else if(ret==0)
@@ -186,7 +239,7 @@ public:
                             //打印连接的信息
                             client_address_print(c_addr);
                             //进行一个通信
-                            communction(_client_map,client_fd);
+                            communction(_knowledge_base,_client_map,client_fd);
                         }
                     }
                 }
@@ -198,7 +251,14 @@ public:
             return ;
         } 
     }
-
+    //知识仓库进行一个初始化,里面假如加了十条常用的回复语
+    void init_Knowledge_Base()
+    {
+        _knowledge_base.insert(std::make_pair("hello","hello小伙伴"));
+        _knowledge_base.insert(std::make_pair("晚安","晚安! 祝你有一个好梦!!!"));
+        _knowledge_base.insert(std::make_pair("早上好","早上好啊,小伙伴,让我们开始一天的工作吧!!"));
+        _knowledge_base.insert(std::make_pair("china","中国"));
+    }
 private:
     //对于tcp_server,我们用以下成员变量来存储对应的信息
     //对于传入的ip我们用字符串表示，可以用点分十进制来表示
@@ -207,4 +267,5 @@ private:
     int _listen_file_descriptor;//监听标识符
     std::map<int,client_address> _client_map;
     bool _status;
+    std::map<std::string,std::string> _knowledge_base;
 };
