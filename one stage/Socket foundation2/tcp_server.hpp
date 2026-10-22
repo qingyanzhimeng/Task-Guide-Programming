@@ -7,6 +7,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <map>
+#include <stdexcept>
 const int PRINT_INTERVAL = 2; // 每2s打印一次
 //定义一个结构体来来存储已经建立连接的客户端的ip与端口地址
 struct client_address
@@ -137,8 +138,8 @@ public:
         _listen_file_descriptor=socket(AF_INET,SOCK_STREAM,0);//默认为阻塞模式
         if(_listen_file_descriptor==-1)
         {
-            std::perror("listen_socket create error:");
-            _status=false;
+            //如果这里没有创建对应的socket,这个时候用异常进行处理,把异常抛出去,让外层进行一个处理
+            throw std::runtime_error(std::string("socket create error")+strerror(errno));
         }
         else
         {
@@ -251,6 +252,7 @@ public:
             return ;
         } 
     }
+private:
     //知识仓库进行一个初始化,里面假如加了十条常用的回复语
     void init_Knowledge_Base()
     {
