@@ -8,7 +8,8 @@
 #include <arpa/inet.h>
 #include <map>
 #include <stdexcept>
-const int PRINT_INTERVAL = 2; // 每2s打印一次
+#include <vector>
+#define SINGLE_COMMAND_LENGTH 1024  //表示单条命令的最大长度
 //定义一个结构体来来存储已经建立连接的客户端的ip与端口地址
 struct client_address
 {
@@ -20,29 +21,83 @@ void client_address_print(client_address& c_addr)
     std::cout<<"have a new link"<<std::endl;
     std::cout<<"ip:"<<c_addr._ip<<" port:"<<c_addr._port<<std::endl;
 }
-void print_client_fd(std::map<int,client_address> & _map,time_t & _last_time)
+
+//在暂存命令string中找到此时此刻完整的命令,_str是暂存命令的暂存区,然后commands这个就是我们解析之后的命令
+void  get_all_commands(const int client_fd,std::string& _str,std::vector<std::string> & commands)
 {
-    //获得最新的时间戳
-    time_t  _current_time=time(nullptr);
-    //将两个时间戳进行一个相减
-    if((_current_time-_last_time)>PRINT_INTERVAL)
+    //对_str暂存命令的区域进行一个扫描读取我们要想要的完整命令
+    size_t pos=0;
+    for(pos=_str.find('\n');pos!=std::string::npos;pos=_str.find('\n'))
     {
-        //这里打印map中的内容
-        auto it=_map.begin();
-        for(;it!=_map.end();++it)
+        //能够从_str中找到对应的'\n',然后得到的位置不等于非法,这个时候找到了
+        //完整的命令,然后插入到我们对应的commands中去
+        std::string _mid=_str.substr(0,pos);
+        //首先判断每条命令是否按照我们规定的每条命令的长度不要超过SINGLE_COMMAND_LENGTH
+        if(_mid.size()<SINGLE_COMMAND_LENGTH)
         {
-            //因为这里我们提前知道了我们定义的map里面存储的内容,所以这里写的简单一点
-            std::cout<<"fd:"<<it->first<<" socket:"<<it->second._ip<<":"<<it->second._port<<std::endl;
+            //然后判断_mid最后一个字符是否为'\r',如果是就移除
+            if(_mid.size()!=0)
+            {
+                if(_mid.back()=='\r')
+                {
+                    _mid.pop_back();
+                }
+                //然后插入到commands中
+                commands.push_back(_mid);
+            }
+            //然后剔除已经从_str中获取的命令
+            _str.erase(0,pos+1);
         }
-        //将所有的信息打印完成之后,要更新last_time
-        _last_time=_current_time;
+        else
+        {
+            throw std::runtime_error(std::string("single command length more than SINGLE_COMMAND_LENGTH")+std::strerror(errno));
+        }  
+    }
+}
+//处理单条命令的函数
+void process_command(const int client_fd,std::map<std::string,std::string> & knowladge_base,const std::string& command)
+{
+    ssize_t len2 = 0;
+    size_t sent = 0;
+    // 查找知识库是否存在
+    auto it = knowladge_base.find(command);
+    if (it != knowladge_base.end())
+    {
+        std::string mid = it->second + '\n';
+        // 存在
+        while (sent < mid.size())
+        {
+            len2 = send(client_fd, mid.c_str() + sent, mid.size() - sent, 0);
+            if (len2 <= 0)
+            {
+                std::perror("send error");
+                break;
+            }
+            sent += len2;
+        }
+    }
+    else
+    {
+        // 不存在,返回不存在的内容
+        std::string default_command = "not exist\n";
+        size_t size = default_command.size();
+        while (sent < size)
+        {
+            len2 = send(client_fd, default_command.c_str() + sent, size - sent, 0);
+            if (len2 <= 0)
+            {
+                std::perror("send error");
+                break;
+            }
+            sent += len2;
+        }
     }
 }
 
-
-void  communction(std::map<std::string,std::string> & knowladge_base,std::map<int,client_address>& client_map,int& client_fd)
+//进行单客户端通信
+void  communction(std::map<std::string,std::string> & knowladge_base,
+    std::map<int,client_address>& client_map,int& client_fd)
 {
-    
     //与单个客户端进行一个对话
     char buffer[1024];
     memset(buffer,0,sizeof(buffer));
@@ -50,6 +105,7 @@ void  communction(std::map<std::string,std::string> & knowladge_base,std::map<in
     ssize_t len=0;
     std::string pending;//待定区域
     std::string command;
+    std::vector<std::string> commands;//定义一个命令的容器集合,用于存放所有的命令,然后进行一个集中处理
     while(true)
     {
         len=recv(client_fd,buffer,sizeof(buffer),0);
@@ -57,57 +113,25 @@ void  communction(std::map<std::string,std::string> & knowladge_base,std::map<in
         {
             //定义一个接受暂存区
             pending.append(buffer,len);
-            //每次追加完成,我们需要判断我们追加的数据中有没有我们想要的完整的客户端指令
-            size_t pos1=pending.find('\n');
-            //判断返回值是否合规
-            if(pos1!=std::string::npos)
+            //从pending获得我们想要的命令
+            try
             {
-                //找到一条完整的指令内容
-                command=pending.substr(0,pos1);
-                //然后判断最后一个字符是不是'\r'
-                if(command.back()=='\r')
-                {
-                    //去除这个最后一个字符
-                    command.pop_back(); 
-                }
-                ssize_t len2=0;
-                size_t sent=0;
-                //查找知识库是否存在
-                auto it=knowladge_base.find(command);
-                if(it!=knowladge_base.end())
-                {
-                    std::string mid=it->second+'\n';
-                    //存在
-                    while(sent<mid.size())
-                    {
-                        len2=send(client_fd,mid.c_str()+sent,mid.size()-sent,0);
-                        if(len2<=0)
-                        {
-                            std::perror("send error");
-                            break;
-                        }
-                        sent+=len2;
-                    }
-                }
-                else
-                {
-                    //不存在,返回不存在的内容
-                    command="not exist\n";
-                    size_t size=command.size();
-                    while(sent<size)
-                    {
-                        len2=send(client_fd,command.c_str()+sent,size-sent,0);
-                        if(len2<=0)
-                        {
-                            std::perror("send error");
-                            break;
-                        }
-                        sent+=len2;
-                    }
-                }
-                //不管是否在知识库中找到了对应的关键词,这个时候都要更新一下pending
-                pending.erase(0,pos1+1);
+                //如果这个函数出现一个异常,我们规定的这个异常是单条命令已经超过最大的长度
+                get_all_commands(client_fd,pending,commands);
             }
+            catch(const std::exception& e)
+            {
+                std::cerr << e.what() << '\n';
+                break;
+            }
+            //循环处理命令
+            int len=commands.size();
+            for(int i=0;i<len;++i)
+            {
+                process_command(client_fd,knowladge_base,commands[i]);
+            }
+            //清理一下commands
+            commands.clear();
         }
         else if(len==0)
         {
