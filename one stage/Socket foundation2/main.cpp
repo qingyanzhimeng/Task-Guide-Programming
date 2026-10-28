@@ -1,4 +1,5 @@
-#include "tcp_server.hpp"
+
+#include "tcp_server.h"
 #include <cctype>
 
 int main(int argc,char* argv[])
@@ -13,7 +14,7 @@ int main(int argc,char* argv[])
         {
             for(auto e:argv_two)
             {
-                if(isalnum(e)==0)
+                if(isdigit(e)==0)
                 {
                     //证明输入的有不是数字的部分,这个时候就需要抛逻辑异常
                     throw std::logic_error(std::string("输入的端口号非数字 :")+strerror(errno));

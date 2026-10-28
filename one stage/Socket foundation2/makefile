@@ -1,25 +1,17 @@
-
-# 编译器
 CXX = g++
+CXXFLAGS = -Wall -g
 
-# 编译选项
-CXXFLAGS = -Wall -g -std=c++11
-
-# 生成的可执行文件名
 TARGET = server
+OBJS = main.o tcp_server.o
 
-# 源文件
-SRC = main.cpp
-
-# 默认目标
 all: $(TARGET)
+	rm -f $(OBJS)
 
-# 编译生成可执行文件
-$(TARGET): $(SRC) tcp_server.hpp
-	$(CXX) $(CXXFLAGS) $(SRC) -o $(TARGET)
+$(TARGET): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
 
-# 清理编译文件
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
 clean:
-	rm -f $(TARGET)
-
-.PHONY: all clean
+	rm -f $(OBJS) $(TARGET)
