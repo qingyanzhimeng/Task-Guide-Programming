@@ -11,7 +11,7 @@
 #include <stdexcept>
 #include <vector>
 #define PENDING_LENGTH 2048    //表示命令区的最大长度
-#define SINGLE_COMMAND_LENGTH 1024  //表示单条命令的最大长度
+#define SINGLE_COMMAND_LENGTH 1024  //表示单条命令的最大长度 这里表示正文加\r\n也就是去除这些符号之后的正文长度
 
 //用于保存客户端的连接信息,ip+port
 struct client_address
