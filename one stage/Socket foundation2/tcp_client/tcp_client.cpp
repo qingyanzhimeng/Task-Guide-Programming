@@ -6,7 +6,7 @@ tcp_client::tcp_client(std::string ip,int port)
 {
     //首先创建socket
     _comm_fd=socket(AF_INET,SOCK_STREAM,0);//选择ipv4协议,对应的字节流,然后默认是阻塞式通信
-    if(_comm_fd>0)
+    if(_comm_fd>=0)
     {
         std::cout<<"_comm_fd create success !!"<<"socket create success"<<std::endl;
         //然后开始连接服务器
@@ -50,7 +50,8 @@ tcp_client::tcp_client(std::string ip,int port)
 //析构函数,用于释放资源
 tcp_client::~tcp_client()
 {
-    if(_comm_fd>0)
+    //文件标识符大于等于0表示获得合法的文件描述符
+    if(_comm_fd>=0)
     {
         close(_comm_fd);
     }
@@ -61,7 +62,7 @@ void tcp_client::communication()
     //先判断连接状态
     if(!_status)
     {
-        return;   
+        return; 
     }
     else
     {
@@ -70,16 +71,29 @@ void tcp_client::communication()
         char buffer[1024];
         memset(buffer,0,sizeof(buffer));
         size_t buffer_size=sizeof(buffer);
-        std::string massage;
-        std::string dialogue;
+        std::string massage; //表示客户端收到服务器端发送的信息
+        std::string dialogue; //表示客户端主动发送的信息
         bool comm_status=true;//这个状态看在接收的过程中是否有很长的消息
         std::cout<<"开始与服务器进行一个对话吧"<<std::endl;
         while(true)
         {
             std::cout<<"client>>:";
-            std::getline(std::cin,dialogue);
-            //拼接'\n'
-            dialogue+='\n';
+            if(std::getline(std::cin,dialogue))
+            {
+                if(dialogue.size()==0)
+                {
+                    std::cout<<"The string you entered is empty"<<std::endl;
+                    std::cout<<"Please enter again"<<std::endl;
+                    continue;
+                }
+                //不是空字符拼接'\n',用户正确的进行了一个输入
+                dialogue+='\n';
+            }
+            else
+            {
+                std::cout<<"getline have error";
+                break;
+            }
             //加入_pending;
             ssize_t len=0;
             size_t sent=0;
@@ -88,7 +102,7 @@ void tcp_client::communication()
             {
                 while(sent<dialogue.size())
                 {
-                    len=send(_comm_fd,dialogue.c_str()+sent,dialogue.size()-sent,0);
+                    len=send(_comm_fd,dialogue.c_str()+sent,dialogue.size()-sent,MSG_NOSIGNAL);
                     if(len>0)
                     {
                         sent+=len;
@@ -96,13 +110,19 @@ void tcp_client::communication()
                     }
                     else if(len==0)
                     {
-                        //判断errno是否为EINTR
-                        if(errno==EINTR)
-                            continue;
-                        throw std::runtime_error(std::string("send error")+strerror(errno));
+                      throw std::runtime_error("send returned 0 without progress");
                     }
                     else
                     {
+                        //判断发送通道是否异常
+                        if(errno==EPIPE)
+                        {
+                            comm_status=false;
+                            break;
+                        }
+                        //判断是否为中断信号
+                        if(errno==EINTR)
+                            continue;
                         throw std::runtime_error(std::string("send error")+strerror(errno));
                     }
                 }
@@ -115,6 +135,7 @@ void tcp_client::communication()
             }
             if(!comm_status)
                 break;
+            //std::cout<<"send success !"<<std::endl;
             //清空上一条问答
             dialogue.clear();
             //接收服务器反馈过来的信息
@@ -123,15 +144,14 @@ void tcp_client::communication()
             {
                  while(true)
                 {
-                    int len2=recv(_comm_fd,buffer,buffer_size,0);
+                    ssize_t len2=recv(_comm_fd,buffer,buffer_size,0);
                     if(len2>0)
                     {
                         massage.append(buffer,len2);
                         //消息处理
                         try
                         {
-                            massageprocess(massage);
-                            if(massage.size()==0)
+                            if(massageprocess(massage))
                                 break;
                         }
                         catch(const std::exception& e)
@@ -143,12 +163,21 @@ void tcp_client::communication()
                     }
                     else if(len2==0)
                     {
-                        if(errno==EINTR)
-                            continue;
-                        throw std::runtime_error(std::string("recv have a error")+strerror(errno));
+                        //对端优雅的关闭连接,四次挥手
+                        throw std::runtime_error(std::string("tcp_server close the link"));
                     }
                     else
                     {
+                        //对端异常重置,结束该连接,对方异常的关闭连接
+                        if(errno==ECONNRESET)
+                        {
+                            comm_status=false;
+                            break;
+                        }
+                        //收到外部信号,重试
+                        if(errno==EINTR)
+                            continue;
+                        //其他错误
                         throw std::runtime_error(std::string("recv have a error")+strerror(errno));
                     }
                 }
@@ -163,8 +192,11 @@ void tcp_client::communication()
         }
     }
 }
-void tcp_client::massageprocess(std::string& massage)
+bool tcp_client::massageprocess(std::string& massage)
 {
+    //这个变量表示，经过当前处理是否已经得到服务器响应了一条完成的回复，如果有就
+    //达到目的，如果没有就继续recv,直到服务器进行一个响应
+    bool response_status=false;
     //消息打印,打印消息
     std::string _mid;
     for(size_t pos=massage.find('\n');pos!=std::string::npos;pos=massage.find('\n'))
@@ -189,6 +221,7 @@ void tcp_client::massageprocess(std::string& massage)
         if(_mid.size()<=MASSAGE_LENGTH)
         {      
             std::cout<<_mid<<std::endl;
+            response_status=true;
             massage.erase(0,pos+1);
         }
         else
@@ -206,4 +239,5 @@ void tcp_client::massageprocess(std::string& massage)
     {
         throw std::runtime_error(std::string("massage length more than MASSAGE_LENGTH"));
     }
+    return response_status;
 }

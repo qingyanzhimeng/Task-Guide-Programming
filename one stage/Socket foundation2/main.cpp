@@ -50,7 +50,7 @@ int main(int argc,char* argv[])
             }
             else
             {
-                throw std::invalid_argument(std::string("invalid port:")+strerror(errno));
+                throw std::invalid_argument(std::string("invalid port:"));
             }
         }
         catch(const std::exception& e)

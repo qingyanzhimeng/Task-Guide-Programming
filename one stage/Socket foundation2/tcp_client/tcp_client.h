@@ -18,7 +18,7 @@ public:
     //用于交流通信的接口
     void communication();
 private:
-    void massageprocess(std::string& massage);
+    bool massageprocess(std::string& massage);
 public:
     //析构函数,用于释放资源
     ~tcp_client();

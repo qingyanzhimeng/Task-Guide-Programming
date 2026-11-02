@@ -37,6 +37,7 @@ void  get_all_commands(const int& client_fd,std::string& _pending,std::vector<st
 void  communication(const int& client_fd);
 //处理单条命令的函数
 void process_command(const int& client_fd,const std::string& command);
+void process_echo(const int& client_fd,const std::string& command);
 //知识仓库进行一个初始化,里面假如加了十条常用的回复语
 void init_Knowledge_Base(); 
 private:

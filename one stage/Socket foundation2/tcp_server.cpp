@@ -3,7 +3,6 @@
     {
         std::cout<<"ip:"<<_ip<<" port:"<<_port;
     }
-
     //缺省构造函数,通过ip与端口号来建立监听socket
     tcp_server::tcp_server(std::string ip,int port)
     :_ip_adress(ip)
@@ -31,6 +30,14 @@
                 if(ret2==-1)
                 {
                     std::perror("bind error :");
+                    int saved_errno=errno;
+                    //打印错误信息
+                    std::cout<<"bind return"<<ret2<<std::endl;
+                    std::cout<<"errno:"<<saved_errno<<":"<<strerror(saved_errno)<<std::endl;
+                    if(saved_errno==EADDRINUSE)
+                    {
+                        std::cout<<"The port has already been used"<<std::endl;
+                    }
                     _status=false;
                 }
                 else
@@ -183,6 +190,37 @@ void  tcp_server::get_all_commands(const int& client_fd,std::string& _pending,st
             throw std::runtime_error(std::string("single command length more than SINGLE_COMMAND_LENGTH"));
         }
 }
+void tcp_server::process_echo(const int& client_fd,const std::string& command)
+{
+    ssize_t len2 = 0;
+    size_t sent = 0;
+    //给回复给客户端的信息最后加上'\n'
+    std::string mid=command+'\n';
+    //发送知识库中的消息
+    while (sent < mid.size())
+    {
+        len2 = send(client_fd, mid.c_str() + sent, mid.size() - sent, MSG_NOSIGNAL);
+        if(len2>0)
+        {
+            sent += len2;
+            std::cout<<"tcp_server haved thransfered "<<sent<<" Byte to";
+            auto client=_client_map.find(client_fd);
+            std::cout<<"the socket:{"<<client->second._ip<<":"<<client->second._port<<"}"<<std::endl;
+        }
+        else if (len2 == 0)
+        {
+            throw std::runtime_error("send returned 0 without progress");
+        }
+        else if(len2==-1)
+        {
+            if(errno==EPIPE)
+            throw std::runtime_error(std::string("pipe have a error :")+strerror(errno));
+            if(errno==EINTR)
+                continue;
+            throw std::runtime_error(std::string("send have a question :")+strerror(errno));
+        }
+    }
+}
 //处理单条命令的函数
 void tcp_server::process_command(const int& client_fd,const std::string& command)
 {
@@ -193,11 +231,11 @@ void tcp_server::process_command(const int& client_fd,const std::string& command
     if (it != _knowledge_base.end())
     {
         //给回复给客户端的信息最后加上'\n'
-        std::string mid = it->second + '\n';
+        std::string mid=it->second+'\n';
         //发送知识库中的消息
         while (sent < mid.size())
         {
-            len2 = send(client_fd, mid.c_str() + sent, mid.size() - sent, 0);
+            len2 = send(client_fd, mid.c_str() + sent, mid.size() - sent, MSG_NOSIGNAL);
             if(len2>0)
             {
                 sent += len2;
@@ -207,11 +245,12 @@ void tcp_server::process_command(const int& client_fd,const std::string& command
             }
             else if (len2 == 0)
             {
-                //
-                throw std::runtime_error(std::string("Connection has been disconnected")+strerror(errno));
+               throw std::runtime_error("send returned 0 without progress");
             }
             else if(len2==-1)
             {
+                if(errno==EPIPE)
+                throw std::runtime_error(std::string("pipe have a error :")+strerror(errno));
                 if(errno==EINTR)
                     continue;
                 throw std::runtime_error(std::string("send have a question :")+strerror(errno));
@@ -225,18 +264,19 @@ void tcp_server::process_command(const int& client_fd,const std::string& command
         size_t size = default_command.size();
         while (sent < size)
         {
-            len2 = send(client_fd, default_command.c_str() + sent, size - sent, 0);
+            len2 = send(client_fd, default_command.c_str() + sent, size - sent, MSG_NOSIGNAL);
             if(len2>0)
             {
                 sent+=len2;
             }
             else if (len2 == 0)
             {
-                //对端已经关闭tcp的连接,所以我们要进行一个处理
-                throw std::runtime_error(std::string("Connection has been disconnected")+strerror(errno));
+                throw std::runtime_error("send returned 0 without progress");
             }
             else
             {
+                if(errno==EPIPE)
+                 throw std::runtime_error(std::string("pipe have a error :")+strerror(errno));
                 if(errno==EINTR)
                     continue;
                 throw std::runtime_error(std::string("send have a question :")+strerror(errno));
@@ -257,6 +297,7 @@ void  tcp_server::communication(const int& client_fd)
     while(true)
     {
         len=recv(client_fd,buffer,sizeof(buffer),0);
+        std::cout << "recv return: " << len << std::endl;
         if(len>0)
         {
             //定义一个接受暂存区
@@ -273,13 +314,19 @@ void  tcp_server::communication(const int& client_fd)
                 break;
             }
             //循环处理命令
-            int len=commands.size();
+            int len2=commands.size();
+             //如果对方就发送了一个回车,那么我们不能卡在这个地方也要退出
+            if(len2==0)
+            {
+                //这个时候需要进行一个命令无效的返回,不能轻易的关闭对客户端的连接
+                continue;
+            }
             bool status=true;//每次对命令进行处理之后的一个状态
-            for(int i=0;i<len;++i)
+            for(int i=0;i<len2;++i)
             {
                 try
                 {
-                   process_command(client_fd,commands[i]);
+                   process_echo(client_fd,commands[i]);
                 }
                 catch(const std::exception& e)
                 {
@@ -290,16 +337,22 @@ void  tcp_server::communication(const int& client_fd)
             }
             //清理一下commands
             commands.clear();
+            //这个表述命令被正确的处理了然后退出
             if(!status)
                 break;
         }
         else if(len==0)
         {
-            //对端关闭了连接,直接退出关闭连接即可
+            //对方优雅的关闭连接
             break;
         }
         else
         {
+            //增加调试信息
+            std::cout<<"recv return:"<<len<<std::endl;
+            std::cout<<"errno:"<<errno<<":"<<strerror(errno)<<std::endl;
+            if(errno==ECONNRESET)
+                break;
             //先判断错误码是否为EINTR
             if(errno==EINTR)
                 continue;
