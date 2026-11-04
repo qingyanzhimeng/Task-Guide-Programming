@@ -1,0 +1,1568 @@
+socket create success
+bind success
+listen success, waiting for client...
+tcp_server have a new link!
+ip:127.0.0.1 port:43364
+recv return: 11
+tcp_server have a new link!
+ip:127.0.0.1 port:43374
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43364}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43380
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43374}
+recv return: 0
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43380}
+tcp_server have a new link!
+ip:127.0.0.1 port:43382
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43382}
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43394
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43394}
+tcp_server have a new link!
+ip:127.0.0.1 port:43402
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43406
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43402}
+recv return: 0
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43406}
+tcp_server have a new link!
+ip:127.0.0.1 port:43412
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43426
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43412}
+recv return: 0
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43426}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43442
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43442}
+tcp_server have a new link!
+ip:127.0.0.1 port:43450
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43462
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43450}
+recv return: 0
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43462}
+tcp_server have a new link!
+ip:127.0.0.1 port:43470
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43478
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43470}
+recv return: 0
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43478}
+tcp_server have a new link!
+ip:127.0.0.1 port:43480
+recv return: 0
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43480}
+tcp_server have a new link!
+ip:127.0.0.1 port:43482
+recv return: 0
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43482}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43498
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43498}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43510
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43510}
+tcp_server have a new link!
+ip:127.0.0.1 port:43514
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43520
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43514}
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43520}
+tcp_server have a new link!
+ip:127.0.0.1 port:43532
+recv return: 0
+recv return: 0
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43532}
+tcp_server have a new link!
+ip:127.0.0.1 port:43544
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43544}
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43560
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43560}
+tcp_server have a new link!
+ip:127.0.0.1 port:43568
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43576
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43568}
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43576}
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43586
+tcp_server have a new link!
+ip:127.0.0.1 port:43588
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43586}
+recv return: 0
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43588}
+tcp_server have a new link!
+ip:127.0.0.1 port:43602
+recv return: 0
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43602}
+tcp_server have a new link!
+ip:127.0.0.1 port:43614
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43622
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43614}
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43622}
+tcp_server have a new link!
+ip:127.0.0.1 port:43636
+recv return: 0
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43636}
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43640
+tcp_server have a new link!
+ip:127.0.0.1 port:43644
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43640}
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43644}
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43656
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43656}
+tcp_server have a new link!
+ip:127.0.0.1 port:43672
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43680
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43672}
+recv return: 0
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43680}
+tcp_server have a new link!
+ip:127.0.0.1 port:43684
+recv return: 0
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43684}
+tcp_server have a new link!
+ip:127.0.0.1 port:43696
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43702
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43696}
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43702}
+tcp_server have a new link!
+ip:127.0.0.1 port:43706
+recv return: 0
+recv return: 0
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43706}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43722
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43722}
+tcp_server have a new link!
+ip:127.0.0.1 port:43734
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43736
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43734}
+recv return: 0
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43736}
+tcp_server have a new link!
+ip:127.0.0.1 port:43752
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43752}
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43756
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43756}
+tcp_server have a new link!
+ip:127.0.0.1 port:43764
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43764}
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43766
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43766}
+tcp_server have a new link!
+ip:127.0.0.1 port:43780
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43784
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43780}
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43784}
+tcp_server have a new link!
+ip:127.0.0.1 port:43786
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43798
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43786}
+recv return: 11
+recv return: 0
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43798}
+tcp_server have a new link!
+ip:127.0.0.1 port:43814
+recv return: 0
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43814}
+tcp_server have a new link!
+ip:127.0.0.1 port:43826
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43826}
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43838
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43838}
+tcp_server have a new link!
+ip:127.0.0.1 port:43850
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43854
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43850}
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43854}
+tcp_server have a new link!
+ip:127.0.0.1 port:43862
+recv return: 0
+recv return: 0
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43862}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43864
+tcp_server have a new link!
+ip:127.0.0.1 port:43868
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43864}
+recv return: 0
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43868}
+tcp_server have a new link!
+ip:127.0.0.1 port:43882
+recv return: 0
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43882}
+tcp_server have a new link!
+ip:127.0.0.1 port:43896
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43896}
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43902
+tcp_server have a new link!
+ip:127.0.0.1 port:43918
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43902}
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43918}
+tcp_server have a new link!
+ip:127.0.0.1 port:43924
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43924}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43930
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43930}
+recv return: 0
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43936
+tcp_server have a new link!
+ip:127.0.0.1 port:43940
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43936}
+recv return: 0
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43940}
+tcp_server have a new link!
+ip:127.0.0.1 port:43956
+recv return: 0
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43956}
+tcp_server have a new link!
+ip:127.0.0.1 port:43970
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:43986
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43970}
+recv return: 0
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43986}
+tcp_server have a new link!
+ip:127.0.0.1 port:43998
+recv return: 0
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:43998}
+tcp_server have a new link!
+ip:127.0.0.1 port:44014
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:44014}
+tcp_server have a new link!
+ip:127.0.0.1 port:44016
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:44016}
+recv return: 0
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44018
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:44018}
+tcp_server have a new link!
+ip:127.0.0.1 port:44028
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44038
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:44028}
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:44038}
+tcp_server have a new link!
+ip:127.0.0.1 port:44046
+recv return: 0
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:44046}
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44062
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:44062}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44076
+tcp_server have a new link!
+ip:127.0.0.1 port:44080
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:44076}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44080}
+tcp_server have a new link!
+ip:127.0.0.1 port:44096
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44104
+recv return: 11
+tcp_server haved thransfered 11 Byte tothe socket:{127.0.0.1:44096}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44104}
+tcp_server have a new link!
+ip:127.0.0.1 port:44114
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44114}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44130
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44130}
+tcp_server have a new link!
+ip:127.0.0.1 port:44138
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44138}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44150
+tcp_server have a new link!
+ip:127.0.0.1 port:44166
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44150}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44178
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44166}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44186
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44178}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44186}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44188
+tcp_server have a new link!
+recv return: ip:12127.0.0.1 port:44190
+
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44188}
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44190}
+tcp_server have a new link!
+ip:127.0.0.1 port:44206
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44212
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44206}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44212}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44226
+tcp_server have a new link!
+ip:127.0.0.1 port:44242
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44226}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44242}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44244
+tcp_server have a new link!
+ip:127.0.0.1 port:44252
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44244}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44252}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44256
+tcp_server have a new link!
+ip:127.0.0.1 port:44272
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44256}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44272}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44286
+tcp_server have a new link!
+ip:127.0.0.1recv return:  port:12
+44296
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44286}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44296}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44304
+tcp_server have a new link!
+ip:127.0.0.1 port:44306recv return: 
+12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44304}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44306}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44314
+tcp_server have a new link!
+ip:127.0.0.1 port:44318
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44314}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44318}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44330
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44330}
+tcp_server have a new link!
+ip:127.0.0.1 port:44336
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44336}
+tcp_server have a new link!
+ip:127.0.0.1 port:44338
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44338}
+recv return: 0
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44340
+tcp_server have a new link!
+ip:127.0.0.1 port:44356recv return: 
+12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44340}
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44356}
+tcp_server have a new link!
+ip:127.0.0.1 port:44368
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44368}
+tcp_server have a new link!
+ip:127.0.0.1 port:44376
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44376}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44384
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44384}
+recv return: 0
+recv return: 0
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44390
+tcp_server have a new link!
+ip:127.0.0.1 port:44402
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44390}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44402}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44414
+tcp_server have a new link!
+ip:127.0.0.1 port:44428
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44414}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44428}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44434
+tcp_server have a new link!
+ip:127.0.0.1 port:44450
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44434}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44450}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44454
+tcp_server have a new link!
+recv return: 12
+ip:127.0.0.1 port:44460
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44454}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44460}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44470
+tcp_server have a new link!
+ip:127.0.0.1recv return:  port:44486
+12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44470}
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44486}
+tcp_server have a new link!
+ip:127.0.0.1 port:44500
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44500}
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44508
+tcp_server have a new link!
+ip:127.0.0.1 port:44524
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44508}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44524}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44530
+tcp_server have a new link!
+ip:127.0.0.1 port:44542
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44530}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44542}
+tcp_server have a new link!
+ip:127.0.0.1 port:44552
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44552}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44564
+tcp_server have a new link!
+ip:127.0.0.1 port:44580
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44564}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44580}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44592
+tcp_server have a new link!
+ip:127.0.0.1 port:44596
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44592}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44596}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44612
+tcp_server have a new link!
+ip:127.0.0.1 port:44620
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44612}
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44620}
+tcp_server have a new link!
+ip:127.0.0.1 port:44624
+recv return: 0
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44624}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44626
+tcp_server have a new link!
+ip:127.0.0.1 port:44642
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44626}
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44642}
+tcp_server have a new link!
+ip:127.0.0.1 port:44652
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44652}
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44656
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44656}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44672
+tcp_server have a new link!
+ip:127.0.0.1 port:44682
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44672}
+recv return: 12
+recv return: 0
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44682}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44698
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44698}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44704
+tcp_server have a new link!
+ip:127.0.0.1 port:44720
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44704}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44720}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44726
+tcp_server have a new link!
+recv return: ip:127.0.0.1 port:44736
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44736}
+tcp_server have a new link!
+ip:127.0.0.1 port:44738
+12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44726}
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44738}
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44752
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44752}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44756
+tcp_server have a new link!
+ip:127.0.0.1 port:44762
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44756}
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44762}
+tcp_server have a new link!
+ip:127.0.0.1 port:44766
+recv return: 0
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44766}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44774
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44774}
+tcp_server have a new link!
+ip:127.0.0.1 port:44780
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44780}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44790
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44790}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44792
+tcp_server have a new link!
+ip:127.0.0.1 port:44804
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44792}
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44804}
+tcp_server have a new link!
+ip:127.0.0.1 port:44820
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+recv return: ip:127.0.0.1 port:4483612
+
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44820}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44836}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44852
+tcp_server have a new link!
+ip:127.0.0.1 port:recv return: 4486412
+
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44852}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44864}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44880
+tcp_server have a new link!
+ip:127.0.0.1 port:44890
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44880}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44890}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44898
+tcp_server have a new link!
+ip:127.0.0.1 port:44900
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44898}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44900}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44910
+tcp_server have a new link!
+ip:127.0.0.1recv return:  port:1244920
+
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44910}
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44920}
+tcp_server have a new link!
+ip:127.0.0.1 port:44926
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44936
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44926}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44936}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44948
+tcp_server have a new link!
+ip:127.0.0.1 port:44964
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44948}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44964}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:44978
+tcp_server have a new link!
+ip:127.0.0.1 port:44992
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44978}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:44992}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45008
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45008}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45012
+tcp_server have a new link!
+ip:127.0.0.1 port:45014
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45012}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45014}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45020
+tcp_server have a new link!
+ip:127.0.0.1 port:45036
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45020}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45036}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45042
+tcp_server have a new link!
+ip:127.0.0.1 port:45046
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45042}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45046}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45048
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45048}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45054
+tcp_server have a new link!
+ip:127.0.0.1 port:45060
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45054}
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45060}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45070
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45070}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45084
+tcp_server have a new link!
+ip:127.0.0.1 port:45092
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45084}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45092}
+tcp_server have a new link!
+ip:127.0.0.1 port:45100
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45100}
+tcp_server have a new link!
+ip:127.0.0.1 port:45114
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45114}
+tcp_server have a new link!
+ip:127.0.0.1 port:45120
+recv return: 0
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45120}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45124
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45124}
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45126
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45126}
+tcp_server have a new link!
+ip:127.0.0.1 port:45140
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45140}
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45152
+tcp_server have a new link!
+ip:127.0.0.1 port:45158
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45152}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45158}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45160
+tcp_server have a new link!
+ip:127.0.0.1 port:45174
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45160}
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45174}
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45176
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45176}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45186
+tcp_server have a new link!
+ip:127.0.0.1 port:45200
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45186}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45200}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45208
+tcp_server have a new link!
+ip:127.0.0.1 port:45214
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45208}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45214}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45226
+tcp_server have a new link!
+ip:127.0.0.1 port:45228
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45226}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45228}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45244
+tcp_server have a new link!
+ip:127.0.0.1 port:45254
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45244}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45254}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45256
+tcp_server have a new link!
+ip:127.0.0.1 port:45260
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45256}
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45260}
+tcp_server have a new link!
+ip:127.0.0.1 port:45276
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45276}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45290
+recv return: 12
+recv return: 0
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45290}
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45304
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45304}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45320
+tcp_server have a new link!
+ip:127.0.0.1 port:45326
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45320}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45326}
+tcp_server have a new link!
+ip:127.0.0.1 port:45336
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45336}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45340
+tcp_server have a new link!
+ip:127.0.0.1 port:45344
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45340}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45344}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45346
+tcp_server have a new link!
+ip:127.0.0.1 port:45360
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45346}
+recv return: 12
+recv return: 0
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45360}
+tcp_server have a new link!
+ip:127.0.0.1 port:45362
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45378
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45362}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45378}
+tcp_server have a new link!
+ip:127.0.0.1 port:45380
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45380}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45396
+tcp_server have a new link!recv return: 
+ip:127.0.0.1 port:45400
+12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45396}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45400}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45406
+tcp_server have a new link!
+ip:127.0.0.1 port:45410
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45406}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45410}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45412
+tcp_server have a new link!
+ip:127.0.0.1 port:45418
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45412}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45418}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45422
+tcp_server have a new link!
+ip:127.0.0.1 port:45424
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45422}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45424}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45440
+tcp_server have a new link!
+ip:127.0.0.1 port:45452
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45440}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45452}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45458
+tcp_server have a new link!
+ip:127.0.0.1 port:45462
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45458}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45462}
+tcp_server have a new link!
+ip:127.0.0.1 port:45464
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45472
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45464}
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45472}
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45488
+tcp_server have a new link!
+ip:127.0.0.1 port:45498
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45488}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45498}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45506
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45506}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45514
+tcp_server have a new link!
+ip:127.0.0.1 port:45516
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45514}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45516}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45524
+tcp_server have a new link!
+ip:127.0.0.1 port:45532
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45524}
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45532}
+tcp_server have a new link!
+ip:127.0.0.1 port:45544
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45558
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45544}
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45558}
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45566
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45566}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45568
+tcp_server have a new link!
+ip:127.0.0.1 port:45580
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45568}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45580}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45582
+tcp_server have a new link!
+ip:127.0.0.1 port:45586
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45582}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45586}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45600
+tcp_server have a new link!
+ip:127.0.0.1 port:45616
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45600}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45616}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45620
+tcp_server have a new link!
+ip:127.0.0.1 port:45628
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45620}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45628}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45642
+tcp_server have a new link!
+recv return: ip:127.0.0.1 port:1245650
+
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45642}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45666
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45650}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45666}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45668
+tcp_server have a new link!
+ip:127.0.0.1 port:45670
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45668}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45670}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45686
+tcp_server have a new link!
+ip:127.0.0.1 port:45688
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45686}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45688}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45702
+tcp_server have a new link!
+ip:127.0.0.1 port:45708
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45702}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45708}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45724
+tcp_server have a new link!
+ip:127.0.0.1 port:45736
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45724}
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45736}
+tcp_server have a new link!
+ip:127.0.0.1 port:45750
+recv return: 0
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45750}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45752
+tcp_server have a new link!
+ip:127.0.0.1 port:45762
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45752}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45762}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45772
+tcp_server have a new link!
+ip:127.0.0.1 port:45776
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45772}
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45776}
+tcp_server have a new link!
+ip:127.0.0.1 port:45786
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45786}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45798
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45798}
+recv return: 0
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45814
+tcp_server have a new link!
+ip:127.0.0.1 port:45826
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45814}
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45826}
+tcp_server have a new link!
+ip:127.0.0.1 port:45834
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45834}
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45836
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45836}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45848
+tcp_server have a new link!
+ip:127.0.0.1 port:45852
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45848}
+recv return: recv return: 012
+
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45852}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45862
+tcp_server have a new link!
+ip:127.0.0.1 port:45866
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45862}
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45866}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45876
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45876}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45878
+tcp_server have a new link!
+ip:127.0.0.1 port:45890
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45878}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45890}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45904
+tcp_server have a new link!
+ip:127.0.0.1 port:45914
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45904}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45914}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45922
+tcp_server have a new link!
+ip:127.0.0.1 port:45934
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45922}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45934}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45946
+tcp_server have a new link!
+ip:127.0.0.1 port:45958
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45946}
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45958}
+tcp_server have a new link!
+ip:127.0.0.1 port:45962
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45974
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45962}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45974}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:45986
+tcp_server have a new link!
+ip:127.0.0.1 port:46000
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:45986}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:46000}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:46012
+tcp_server have a new link!
+ip:127.0.0.1 port:46014
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:46012}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:46014}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:46030
+tcp_server have a new link!
+ip:127.0.0.1 port:46038
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:46030}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:46038}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:46046
+tcp_server have a new link!
+ip:127.0.0.1 port:46050
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:46046}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:46050}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:46060
+tcp_server have a new link!
+ip:127.0.0.1 port:46076
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:46060}
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:46076}
+tcp_server have a new link!
+ip:127.0.0.1 port:46084
+recv return: 0
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:46092
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:46084}
+recv return: 0
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:46092}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:46094
+tcp_server have a new link!
+ip:127.0.0.1 port:46106
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:46094}
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:46106}
+tcp_server have a new link!
+ip:127.0.0.1 port:46118
+recv return: 0
+recv return: 0recv return: 12
+tcp_server have a new link!
+ip:127.0.0.1 port:46132
+
+tcp_server haved thransfered 12 Byte tothe socket:{127.0.0.1:46118}
+recv return: 0
+tcp_server have a new link!
+ip:127.0.0.1 port:46136
+recv return: 12
+tcp_server haved thransfered 12 Byte tothe socket:{è¹    L‰òH‹uÈH‰ßè`¤ÿÿë‚L‰÷è`–ÿÿ¶E¼Aˆëš€    óúAWI‰×AVI‰öAUA‰ıATL%D  UH-d  SL)åHƒìè×”ÿÿHÁıt1Û€    L‰úL‰öD‰ïAÿÜHƒÃH9İuêHƒÄ[]A\A]A^A_Ãff.„     óúÃ   óúHƒìHƒÄÃ                         basic_string::_M_create basic_string::_M_construct null not valid è¾“å…¥çš„ç«¯å£å·éæ•°å­— : basic_string::append 0.0.0.0 invalid port:      æš‚æ—¶æ²¡æœ‰åŠæ³•åˆ›å»ºæœåŠ¡å™¨ç¨‹åº!!! ip: hello helloå°ä¼™ä¼´ æ™šå®‰ æ—©ä¸Šå¥½ china ä¸­å›½ æ—©å®‰ æ—©å®‰å•Š!! äººæ°‘ ä¸‡å² åä¸º é¥é¥é¢†å…ˆ å°ç±³ å®‰å“ä¹‹å…‰ vivo ç¨³æ‰ç¨³æ‰“ socket create error socket create success bind error : bind return errno: bind success addr format error listen error: in accept:new client_fd==-1 ip error tcp_server have a new link! Server can not init tcp_server haved thransfered   Byte to the socket:{ } pipe have a error : send have a question : recv return:  recv return:    æ™šå®‰! ç¥ä½ æœ‰ä¸€ä¸ªå¥½æ¢¦!!!        æ—©ä¸Šå¥½å•Š,å°ä¼™ä¼´,è®©æˆ‘ä»¬å¼€å§‹ä¸€å¤©çš„å·¥ä½œå§!!      single command length more than SINGLE_COMMAND_LENGTH   The port has already been used  in bind,bind_addr have a question:      listen success, waiting for client...   send returned 0 without progress        The command response does not exist
+    basic_string::_M_replace basic_string::_M_replace_aux   NSt6thread11_State_implINS_8_InvokerISt5tupleIJM10tcp_serverFvRKiEPS3_iEEEEEE   à¬`      ”@     À¬`             P”@     jr@     ¨r@     Âq@     ;d  +   Ğÿÿ¨   •ÿÿ€  0•ÿÿ”  æ•ÿÿ|  ÿÿ¬  AÿÿÌ  Lÿÿğ  æÿÿ  º ÿÿL  ¢ÿÿd   ¢ÿÿ  Ü£ÿÿ€  ø¥ÿÿ¬  «ÿÿ  âµÿÿt  b¾ÿÿÜ  VÌÿÿ  ¤ÔÿÿD  õÜÿÿx  'İÿÿ˜  2İÿÿğ  Úİÿÿ   Şÿÿ@  bŞÿÿ  êŞÿÿ¼  zßÿÿè  &àÿÿH  ãÿÿx  Şãÿÿ¤  ”äÿÿĞ  çÿÿ  ğçÿÿ0  Òèÿÿ\  êÿÿŒ  œëÿÿ¸  Òìÿÿè  Zñÿÿ  òÿÿL  BôÿÿÜ  Nõÿÿ@  ùÿÿ¨   úÿÿ¸  ûÿÿ 	             zR x        x“ÿÿ/    D   0   ”“ÿÿ       $   D    ÿÿ0   FJw€ ?;*3$"           zPLR x(@   $   $   Tœÿÿš   ¨@ A†CCŒƒ’ 0   L   ÆœÿÿÔ  ´@ A†CMŒƒ˜
+A   ,   €   fÿÿU  Ã@ A†CKŒƒÉ
+A  ,   °   b“ÿÿ)  Ø@ A†CPŒƒr
+A    H  [›ÿÿ2    A†Cm       h  m›ÿÿ    A†CF       ,   $  :Úÿÿ§   @@ A†CMŒƒ…
+A   ¼  ²Úÿÿ=    A†CEƒs    Ü  ĞÚÿÿJ    A†CEƒ@   (   ˜  ¤ÿÿ   P@ A†CCŒƒw
+A  (   ,  ÊÚÿÿ‡    A†CMŒƒA
+A(   ğ  &Ûÿÿ   ]@ A†CIŒƒc
+A (     ŠÛÿÿ«   k@ A†CIŒƒc
+A 0   H  „ÿÿ<  z@ A†CMŒƒ
+A   ,   |  ÖÛÿÿç  ~@ A†CMŒƒÕ  (     ŞÿÿÏ    A†CMŒƒ½   (   @  2ßÿÿ¶    A†CMŒƒŸ
+A0     ¼ßÿÿ{  Œ@ A†CMŒƒ
+A   (      âÿÿß    A†CMŒƒÍ   (   Ì  ¸âÿÿâ    A†CMŒƒ±
+A,   ø  nãÿÿ¼   A†CMŒƒ~
+A   (   (  úäÿÿ   A†CMŒƒh
+A,   ì  Üåÿÿ6  œ@ A†CKŒƒª
+A  0     âæÿÿ‡  ´@ A†CMŒƒí
+A   ,   P  6ëÿÿ6  Ø@ A†CKŒƒª
+A  0   €  <ìÿÿ±  ü@ A†CMŒƒ
+A   (   ´  Tÿÿ  $Ÿ@ A†CHƒş
+A   ,   à  DŸÿÿ  3Ÿ@ A†CMŒƒ‰
+A,     ^íÿÿ  |Ÿ@ A†CMŒƒ¬
+A0   @  ¤ÿÿÌ
+  ‹Ÿ@ A†CMŒƒÇ
+A   0   t  îÿÿÂ  ¸Ÿ@ A†CMŒƒÂ
+A   0   ¨  f®ÿÿ€  ÍŸ@ A†CPŒƒ
+A   0   Ü  `ñÿÿ‰   @ A†CMŒƒM
+A   0     ~¶ÿÿó  * @ A†CPŒƒT
+A   0   D  >ÄÿÿN  Ë @ A†CPŒƒI
+A   0   x  XÌÿÿQ  $¡@ A†CPŒƒø
+A        uÔÿÿ2    A†Cm      4  ‡Ôÿÿ    A†CF   D   T  àñÿÿe    FEE E(ŒH0†H8ƒG@n8A0A(B BBB    œ  òÿÿ           ÿÿRc n  ÿÿƒÄ Ï  ÿÿŞã î  ÿã ÿeXb¡ ‹ãò½
+R†ò÷¾–Ó‡	ÿç	Óö	˜°
+µ
+Ü9Ğ ˆ  øBÉ‘t”   }} `­` ÿÿ€— ¢   ÿÿ	"S Š  ÿÿ
+y€ ‹  ÿÿ”› ¦  ÿÿ ÿÿ
+%Ä Ï  ÿÿ ÿÿRc n  ÿÿ¿Ä Ï  àÄ    ÿ!èÿ£¨ ¸  ı½        ÿÿ¿Ä Ï  àÄ ÿÿO^ i     ÿ%&ç uåÏËĞ à         ÿÿX¤‹ –  ÿÿ6ò© ­	 çè	 ó’	 ¤© Ë™
+ ×í	 ˆ		 ã	  ÿÿƒÄ Ï  ÿÿõü ‡  ÿÿ)VÇ øó ¼Â ‚“ ã¡ î®ó ½  ÿÿ–› ¦  ¸› ÿÿDm½ğ ì¯ û$ø ³À¯ ¡­ îî¯ É† ÿÜ ç  äø ‚¦ğ ÿÿÇÌ ×  ñÌ ÿÿœë ÁÈ û  ú¤Ë Ò­ äË Ï‡ ´ ãô §
+é ¡Ë çø «¹ ¥Ë ˜ë ¤ îæ Œ Ÿ¤ ï“ µÆ ùÈ ó¤ ¹Ê ı˜ ÷¤ ÿÿSaÆ ‹’ ¼  ®²ÿ ”Ş ¦ÿ Á ÷å Æ× Š
+‘ ÿ Üí  ê £ÿ   ÿ5+÷Àˆ Ë¸Ë„£ñˆ ï/¨ ½/° Š    }`­`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Ñ2@     ·q@     p*@     Ÿ2@     …q@     @*@                                                                                                                                                                                                                                  ÿ                                       6             W             8$@            ¨@             ˆ¬`     !                     ¬`            (              ¸¬`                   õşÿo    ˜@            ˆ@            €@     
+                                               

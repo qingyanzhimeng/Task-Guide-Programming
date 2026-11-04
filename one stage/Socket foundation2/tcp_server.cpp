@@ -29,8 +29,8 @@
                 int ret2=bind(_listen_file_descriptor,reinterpret_cast<sockaddr*>(&bind_addr),sizeof(bind_addr));
                 if(ret2==-1)
                 {
+                     int saved_errno=errno;
                     std::perror("bind error :");
-                    int saved_errno=errno;
                     //打印错误信息
                     std::cout<<"bind return"<<ret2<<std::endl;
                     std::cout<<"errno:"<<saved_errno<<":"<<strerror(saved_errno)<<std::endl;
@@ -38,12 +38,12 @@
                     {
                         std::cout<<"The port has already been used"<<std::endl;
                     }
-                    _status=false;
+                    this->_status=false;
                 }
                 else
                 {
                     std::cout<<"bind success"<<std::endl;
-                    _status=true;
+                    this->_status=true;
                     //调用知识库,进行一个初始化
                     init_Knowledge_Base();
                 }
@@ -60,28 +60,40 @@
     }
     tcp_server::~tcp_server()
     {
+        //回收线程的资源
+        for(auto & e:this->_vector_thread)
+        {
+            if(e.joinable())
+            {
+                e.join();
+            }
+        }
         //关闭监听节点的文件描述符
-        if(_listen_file_descriptor!=-1)
-            close(_listen_file_descriptor);
+        if(this->_listen_file_descriptor!=-1)
+            close(this->_listen_file_descriptor);
         //首先这个关闭的意思是,如果服务器异常中断了,那么就需要关闭之前链接的tcp连接,
         //在程序运行的时候,也可以进行关闭连接
-        int num=_client_map.size();
-        if(num>0)
         {
-            auto it=_client_map.begin();
-            while(num--)
+            std::lock_guard<std::mutex> _lk(this->_client_map_mutex);
+            int num=this->_client_map.size();
+            if(num>0)
             {
-                close(it->first);
-                it++;
+                
+                auto it=this->_client_map.begin();
+                while(it!=this->_client_map.end()&&num--)
+                {
+                    close(it->first);
+                    it++;
+                }
             }
         }
     }
     void tcp_server::start_server()
     {
-        if(_status==true)
+        if(this->_status==true)
         {
             //开始监听,然后进行接受连接
-            int ret=listen(_listen_file_descriptor,10);
+            int ret=listen(this->_listen_file_descriptor,10);
             if(ret==-1)
             {
                 std::perror("listen error:");
@@ -90,18 +102,36 @@
             else
             {
                 std::cout << "listen success, waiting for client..." << std::endl;
+                //将服务器运行状态调成true
+                this->_server_status.store(true);
+                //给监听套接字设置超时策略
+                if(!this->set_listen_timeout())
+                {
+                    std::cout<<"Set socket_timeout error"<<std::endl;
+                    return ;
+                }
                 //开始接受连接
-                while(true)
+                while(this->_server_status.load())
                 {
                     //用来接收新连接的客户端的信息
                     sockaddr_in client_addr;
                     memset(&client_addr,0,sizeof(client_addr));
                     socklen_t len=sizeof(client_addr);//获取长度
-                    int client_fd=accept(_listen_file_descriptor,reinterpret_cast<sockaddr*>(&client_addr),&len);
+                    int client_fd=accept(this->_listen_file_descriptor,reinterpret_cast<sockaddr*>(&client_addr),&len);
                     if(client_fd==-1)
                     {
-                        std::perror("in accept:new client_fd==-1");
-                        std::perror(strerror(errno));
+                        //这里accept在超时的时候也会返回-1,然后我们可以判断errno的状态来判断是否继续
+                        if(errno==EAGAIN||errno==EWOULDBLOCK)
+                        {
+                            //accept超时了
+                             continue;
+                        } 
+                        if(errno==EINTR)
+                        {
+                            continue;
+                        }  
+                        std::perror("accept error");
+                        break;//退出接收
                     }
                     else
                     {
@@ -117,15 +147,32 @@
                         }
                         else
                         {
+                            //用于连接的客户端的socket在accept的时候也被设置上了超时操作,这个时候要进行一个解除
+                            timeval client_timeout;
+                            client_timeout.tv_sec=0;
+                            client_timeout.tv_usec=0;
+                            int ret2=setsockopt(client_fd,SOL_SOCKET,SO_RCVTIMEO,&client_timeout,sizeof(client_timeout));
+                            if(ret2==-1)
+                            {
+                                //这里设置失败,设置失败打印错误,然后释放掉这个fd,然后continue
+                                std::perror("clear client SO_RCVTIMEO");
+                                close(client_fd);
+                                //重新接收新的客户端的连接
+                                continue;
+                            }
                             c_addr._ip=tag;
                             c_addr._port=ntohs(client_addr.sin_port);
-                            _client_map.insert(std::make_pair(client_fd,c_addr));
+                            {
+                                std::lock_guard<std::mutex> _lk(this->_client_map_mutex);
+                                this->_client_map.insert(std::make_pair(client_fd,c_addr));
+                            }
                             std::cout<<"tcp_server have a new link!"<<std::endl;
                             //打印连接的信息
                             c_addr.client_address_print();
                             std::cout<<std::endl;
-                            //进行一个通信,单客户端进行一个通信
-                            communication(client_fd);
+                            //创建线程,来执行函数调用
+                            //std::thread accept_thread(&tcp_server::communication,this,client_fd);
+                            this->_vector_thread.emplace_back(&tcp_server::communication,this,client_fd);
                         }
                     }
                 }
@@ -203,9 +250,13 @@ void tcp_server::process_echo(const int& client_fd,const std::string& command)
         if(len2>0)
         {
             sent += len2;
-            std::cout<<"tcp_server haved thransfered "<<sent<<" Byte to";
-            auto client=_client_map.find(client_fd);
-            std::cout<<"the socket:{"<<client->second._ip<<":"<<client->second._port<<"}"<<std::endl;
+            {
+                std::lock_guard<std::mutex> _lk(this->_client_map_mutex);
+                std::cout<<"tcp_server haved thransfered "<<sent<<" Byte to";
+                auto client=this->_client_map.find(client_fd);
+                if(client!=this->_client_map.end())
+                    std::cout<<"the socket:{"<<client->second._ip<<":"<<client->second._port<<"}"<<std::endl;
+            }
         }
         else if (len2 == 0)
         {
@@ -227,8 +278,8 @@ void tcp_server::process_command(const int& client_fd,const std::string& command
     ssize_t len2 = 0;
     size_t sent = 0;
     // 查找知识库是否存在
-    auto it = _knowledge_base.find(command);
-    if (it != _knowledge_base.end())
+    auto it = this->_knowledge_base.find(command);
+    if (it != this->_knowledge_base.end())
     {
         //给回复给客户端的信息最后加上'\n'
         std::string mid=it->second+'\n';
@@ -239,9 +290,13 @@ void tcp_server::process_command(const int& client_fd,const std::string& command
             if(len2>0)
             {
                 sent += len2;
-                std::cout<<"tcp_server haved thransfered "<<sent<<" Byte to";
-                auto client=_client_map.find(client_fd);
-                std::cout<<"the socket:{"<<client->second._ip<<":"<<client->second._port<<"}"<<std::endl;
+               {
+                    std::lock_guard<std::mutex> _lk(this->_client_map_mutex);
+                    std::cout<<"tcp_server haved thransfered "<<sent<<" Byte to";
+                    auto client=this->_client_map.find(client_fd);
+                    if(client!=this->_client_map.end())
+                        std::cout<<"the socket:{"<<client->second._ip<<":"<<client->second._port<<"}"<<std::endl;
+                }
             }
             else if (len2 == 0)
             {
@@ -283,6 +338,23 @@ void tcp_server::process_command(const int& client_fd,const std::string& command
             }
         }
     }
+}
+//给监听套接字设置超时操作,也就是说在accept的期间,如果这个期间没有新的客户端连接我的服务器的话
+//我就进行下一步的操作
+bool tcp_server::set_listen_timeout()
+{
+    //创建timeval结构体
+    timeval timeout{};
+    timeout.tv_sec=TIME_OUT;//表示120秒
+    timeout.tv_usec=0;//这个字段表示的是微秒
+    //读监听套接字设置超时动作
+    int ret=setsockopt(this->_listen_file_descriptor,SOL_SOCKET,SO_RCVTIMEO,&timeout,sizeof(timeout));
+    if(ret==-1)
+    {
+        perror("listen_socket conn SO_RCVTIMEO");
+        return false;
+    }
+    return true;
 }
 //进行单客户端通信
 void  tcp_server::communication(const int& client_fd)
@@ -359,22 +431,41 @@ void  tcp_server::communication(const int& client_fd)
             break; //否则直接关闭对客户端的连接
         }
     }
-    close(client_fd);
+   
     //清理map的中的元素
-    _client_map.erase(client_fd);
+    {
+        std::lock_guard<std::mutex> _lk(this->_client_map_mutex);
+        this->_client_map.erase(client_fd);
+    }
+    std::cout<<"服务端将连接客户端的fd关闭了"<<std::endl;
+    close(client_fd);
 }
-
+void tcp_server::stop_server()
+{
+    //停止服务端的运行,这里服务端从while中的accept中已经退出了,所以为了按照唤醒子进程,然后子进程结束
+    //通信关闭fd,然后主线程调用join来回收内核线程的资源,取消与内核线程的关联,然后子线程就可以正常析构了
+    //然后主线程也可以正常的进行析构了
+    this->_server_status.store(false);
+    {
+        std::lock_guard<std::mutex> (this->_client_map_mutex);
+        for(auto & e:this->_client_map)
+        {
+            //进行唤醒操作,进行双向的关闭连接
+            shutdown(e.first,SHUT_RDWR);
+        }
+    } 
+}
 //知识仓库进行一个初始化,里面假如加了十条常用的回复语
 void tcp_server::init_Knowledge_Base()
 {
-    _knowledge_base.insert(std::make_pair("hello","hello小伙伴"));
-    _knowledge_base.insert(std::make_pair("晚安","晚安! 祝你有一个好梦!!!"));
-    _knowledge_base.insert(std::make_pair("早上好","早上好啊,小伙伴,让我们开始一天的工作吧!!"));
-    _knowledge_base.insert(std::make_pair("china","中国"));
-    _knowledge_base.insert(std::make_pair("早安","早安啊!!"));
-    _knowledge_base.insert(std::make_pair("人民","万岁"));
-    _knowledge_base.insert(std::make_pair("华为","遥遥领先"));
-    _knowledge_base.insert(std::make_pair("小米","安卓之光"));
-    _knowledge_base.insert(std::make_pair("vivo","稳扎稳打"));
+    this->_knowledge_base.insert(std::make_pair("hello","hello小伙伴"));
+    this->_knowledge_base.insert(std::make_pair("晚安","晚安! 祝你有一个好梦!!!"));
+    this->_knowledge_base.insert(std::make_pair("早上好","早上好啊,小伙伴,让我们开始一天的工作吧!!"));
+    this->_knowledge_base.insert(std::make_pair("china","中国"));
+    this->_knowledge_base.insert(std::make_pair("早安","早安啊!!"));
+    this->_knowledge_base.insert(std::make_pair("人民","万岁"));
+    this->_knowledge_base.insert(std::make_pair("华为","遥遥领先"));
+    this->_knowledge_base.insert(std::make_pair("小米","安卓之光"));
+    this->_knowledge_base.insert(std::make_pair("vivo","稳扎稳打"));
 }
  

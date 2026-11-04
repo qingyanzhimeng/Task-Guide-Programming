@@ -1,11 +1,9 @@
 CXX = g++
-CXXFLAGS = -Wall -g
-
+CXXFLAGS = -Wall -g -pthread
 TARGET = server
 OBJS = main.o tcp_server.o
 
 all: $(TARGET)
-	rm -f $(OBJS)
 
 $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)

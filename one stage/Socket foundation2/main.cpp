@@ -33,20 +33,29 @@ int main(int argc,char* argv[])
             int port=atoi(argv[1]);
             if(port>=1024&&port<=49151)
             {
-                try
-                {
                      //创建tcp_server服务器,然后程序继续进行
                     tcp_server my_tcp("0.0.0.0",port);
-                    //开启服务
-                    my_tcp.start_server();
-                }
-                catch(const std::exception& e)
-                {
-                    //服务创建失败,这里直接说明原因
-                    std::cerr<<e.what()<<std::endl;
-                    std::cout<<"暂时没有办法创建服务器程序!!!"<<std::endl;
-                    return 3;
-                }
+                    //开启子线程,让子线程执行my_tcp.start_server操作
+                    std::thread tcp_server_thread(&tcp_server::start_server,&my_tcp);
+                    //主线程继续执行后续的操作
+                    std::string terminal_command;
+                    while(true)
+                    {
+                        //让用户输入命令
+                        std::cout<<"输入quit就关闭服务端进程"<<std::endl;
+                        std::cin>>terminal_command;
+                        if(terminal_command.compare("quit")==0)
+                        {
+                            //执行my_tcp中的终止函数
+                            my_tcp.stop_server();
+                            break;
+                        }
+                    }
+                    if(tcp_server_thread.joinable())
+                    {
+                        //阻塞等待子线程结束
+                        tcp_server_thread.join();
+                    }
             }
             else
             {
