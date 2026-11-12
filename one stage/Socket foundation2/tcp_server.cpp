@@ -1,4 +1,36 @@
 #include "tcp_server.h"
+#include <chrono>
+#include <mutex>
+#include <sstream>
+#include <thread>
+namespace cmy
+{
+    std::mutex g_trace_mutex;
+
+    auto g_trace_start =
+        std::chrono::steady_clock::now();
+
+    template<class... Args>
+    void trace_log(Args&&... args)
+    {
+        std::ostringstream oss;
+        (oss << ... << args);
+
+        auto ms =
+            std::chrono::duration_cast<std::chrono::milliseconds>(
+                std::chrono::steady_clock::now()
+                - g_trace_start
+            ).count();
+
+        std::lock_guard<std::mutex> lock(g_trace_mutex);
+
+        std::cout
+            << "[" << ms << "ms]"
+            << "[tid=" << std::this_thread::get_id() << "] "
+            << oss.str()
+            << std::endl;
+    }
+}
     void client_address::client_address_print()
     {
         std::cout<<"ip:"<<_ip<<" port:"<<_port;
@@ -8,6 +40,7 @@
     :_ip_adress(ip)
     ,_port(port)
     ,_status(false)
+    ,_server_status(false)
     {
         _listen_file_descriptor=socket(AF_INET,SOCK_STREAM,0);//默认为阻塞模式
         if(_listen_file_descriptor==-1)
@@ -60,14 +93,17 @@
     }
     tcp_server::~tcp_server()
     {
-        //回收线程的资源
-        for(auto & e:this->_vector_thread)
+        cmy::trace_log("destructor: begin");
+
+        cmy::trace_log("destructor: calling stop_server");
+        this->stop_server();
+        cmy::trace_log("destructor: before join server thread");
+        //首先先回收_start_server_thread线程的资源
+        if(this->_start_server_thread.joinable())
         {
-            if(e.joinable())
-            {
-                e.join();
-            }
+            this->_start_server_thread.join();
         }
+        cmy::trace_log("destructor: server thread joined");
         //关闭监听节点的文件描述符
         if(this->_listen_file_descriptor!=-1)
             close(this->_listen_file_descriptor);
@@ -75,10 +111,9 @@
         //在程序运行的时候,也可以进行关闭连接
         {
             std::lock_guard<std::mutex> _lk(this->_client_map_mutex);
-            int num=this->_client_map.size();
+            size_t num=this->_client_map.size();
             if(num>0)
             {
-                
                 auto it=this->_client_map.begin();
                 while(it!=this->_client_map.end()&&num--)
                 {
@@ -87,9 +122,29 @@
                 }
             }
         }
+        cmy::trace_log("destructor: end");
+    }
+    //让执行服务的线程开始执行起来
+    void tcp_server::start()
+    {
+        cmy::trace_log("start(): begin");
+        if(this->_start_server_thread.joinable())
+        {
+            throw std::logic_error("server has already been started");
+        }
+        //将服务器运行状态调成true
+        this->_server_status.store(true);
+        //将服务线程进行绑定
+        cmy::trace_log("start(): status=true, creating server thread");
+        this->_start_server_thread=std::thread(&tcp_server::start_server,this);
+        cmy::trace_log(
+        "start(): server thread created, tid=",
+        _start_server_thread.get_id()
+    );
     }
     void tcp_server::start_server()
     {
+        cmy::trace_log("server thread: start_server begin");
         if(this->_status==true)
         {
             //开始监听,然后进行接受连接
@@ -102,8 +157,6 @@
             else
             {
                 std::cout << "listen success, waiting for client..." << std::endl;
-                //将服务器运行状态调成true
-                this->_server_status.store(true);
                 //给监听套接字设置超时策略
                 if(!this->set_listen_timeout())
                 {
@@ -117,7 +170,14 @@
                     sockaddr_in client_addr;
                     memset(&client_addr,0,sizeof(client_addr));
                     socklen_t len=sizeof(client_addr);//获取长度
+                    cmy::trace_log("server thread: before accept");
                     int client_fd=accept(this->_listen_file_descriptor,reinterpret_cast<sockaddr*>(&client_addr),&len);
+                    cmy::trace_log(
+                            "server thread: accept returned, fd=",
+                            client_fd,
+                            ", errno=",
+                            (client_fd < 0 ? errno : 0)
+                        );
                     if(client_fd==-1)
                     {
                         //这里accept在超时的时候也会返回-1,然后我们可以判断errno的状态来判断是否继续
@@ -143,7 +203,8 @@
                         {
                             std::cout<<"ip error"<<std::endl;
                             close(client_fd);
-                            return;
+                            this->stop_server();
+                            continue;
                         }
                         else
                         {
@@ -160,19 +221,41 @@
                                 //重新接收新的客户端的连接
                                 continue;
                             }
-                            c_addr._ip=tag;
-                            c_addr._port=ntohs(client_addr.sin_port);
+                            //再次检查this->_server_status的状态,这个防止
+                            //accept在下一次检查this->_server_status这个期间,通过main 输入quit
+                            //执行了stop_server,但是accept这时又收到了新的连接,也就是我们在唤醒所有的线程之后
+                            //又来了一个新的线程,此时我们没有对这个新线程唤醒的操作,所以,如果这个线程被阻塞,我们的主线程也被阻塞到join,
+                            //那么这个服务器就没有办法被成功的析构掉,所以要在这个地方再设置一道检查
+                            bool insert_status=true;
                             {
+                                //加锁,防止此时main中调用stop_Server,这个函数里面有唤醒线程操作
                                 std::lock_guard<std::mutex> _lk(this->_client_map_mutex);
-                                this->_client_map.insert(std::make_pair(client_fd,c_addr));
+                                if(!this->_server_status.load())
+                                {
+                                    //此时_server_status被设置成false,放弃接收新的客户端
+                                    insert_status=false;
+                                }
+                                else
+                                {
+                                    //插入新的客户端
+                                    c_addr._ip=tag;
+                                    c_addr._port=ntohs(client_addr.sin_port);
+                                    this->_client_map.insert(std::make_pair(client_fd,c_addr));
+                                    std::cout<<"tcp_server have a new link!"<<std::endl;
+                                    //打印连接的信息
+                                    c_addr.client_address_print();
+                                    std::cout<<std::endl;
+                                    //创建线程,来执行函数调用,并加入vector worker线程容器
+                                    this->_vector_thread.emplace_back(&tcp_server::communication,this,client_fd);
+                                }
+
                             }
-                            std::cout<<"tcp_server have a new link!"<<std::endl;
-                            //打印连接的信息
-                            c_addr.client_address_print();
-                            std::cout<<std::endl;
-                            //创建线程,来执行函数调用
-                            //std::thread accept_thread(&tcp_server::communication,this,client_fd);
-                            this->_vector_thread.emplace_back(&tcp_server::communication,this,client_fd);
+                            if(!insert_status)
+                            {
+                                //关闭fd
+                                close(client_fd);
+                                break;
+                            }
                         }
                     }
                 }
@@ -182,10 +265,37 @@
         {
             std::cout<<"Server can not init"<<std::endl;
             return ;
-        } 
+        }
+        cmy::trace_log("server thread: accept loop exited");
+        this->join_workers();
+        cmy::trace_log("server thread: start_server return");
+}
+//对worker客户端进行一个join
+void tcp_server::join_workers()
+{
+    cmy::trace_log(
+        "server thread: join_workers begin, count=",
+        _vector_thread.size()
+    );
+    //回收线程的资源
+    for(auto & e:this->_vector_thread)
+    {
+        if(e.joinable())
+        {
+            cmy::trace_log(
+                "server thread: before join worker tid=",
+                e.get_id()
+            );
+            e.join();
+            cmy::trace_log(
+                "server thread: worker join finished"
+            );
+        }
     }
+    cmy::trace_log("server thread: join_workers end");
+}
 //在暂存命令string中找到此时此刻完整的命令,_str是暂存命令的暂存区,然后commands这个就是我们解析之后的命令
-void  tcp_server::get_all_commands(const int& client_fd,std::string& _pending,std::vector<std::string> & commands)
+void  tcp_server::get_all_commands(std::string& _pending,std::vector<std::string> & commands)
 {
         //对_str暂存命令的区域进行一个扫描读取我们要想要的完整命令
         size_t pos=0;
@@ -237,6 +347,7 @@ void  tcp_server::get_all_commands(const int& client_fd,std::string& _pending,st
             throw std::runtime_error(std::string("single command length more than SINGLE_COMMAND_LENGTH"));
         }
 }
+//对客户端发送的信息进行一个返回
 void tcp_server::process_echo(const int& client_fd,const std::string& command)
 {
     ssize_t len2 = 0;
@@ -359,6 +470,10 @@ bool tcp_server::set_listen_timeout()
 //进行单客户端通信
 void  tcp_server::communication(const int& client_fd)
 {
+     cmy::trace_log(
+        "worker: communication begin fd=",
+        client_fd
+    );
     //与单个客户端进行一个对话
     char buffer[1024];
     memset(buffer,0,sizeof(buffer));
@@ -368,7 +483,19 @@ void  tcp_server::communication(const int& client_fd)
     std::vector<std::string> commands;//定义一个命令的容器集合,用于存放所有的命令,然后进行一个集中处理
     while(true)
     {
+        cmy::trace_log(
+            "worker: before recv fd=",
+            client_fd
+        );
         len=recv(client_fd,buffer,sizeof(buffer),0);
+        cmy::trace_log(
+            "worker: recv returned fd=",
+            client_fd,
+            ", len=",
+            len,
+            ", errno=",
+            (len < 0 ? errno : 0)
+        );
         std::cout << "recv return: " << len << std::endl;
         if(len>0)
         {
@@ -378,7 +505,7 @@ void  tcp_server::communication(const int& client_fd)
             try
             {
                 //如果这个函数出现一个异常,我们规定的这个异常是单条命令已经超过最大的长度
-                get_all_commands(client_fd,pending,commands);
+                get_all_commands(pending,commands);
             }
             catch(const std::exception& e)
             {
@@ -386,7 +513,7 @@ void  tcp_server::communication(const int& client_fd)
                 break;
             }
             //循环处理命令
-            int len2=commands.size();
+            size_t len2=commands.size();
              //如果对方就发送了一个回车,那么我们不能卡在这个地方也要退出
             if(len2==0)
             {
@@ -394,7 +521,7 @@ void  tcp_server::communication(const int& client_fd)
                 continue;
             }
             bool status=true;//每次对命令进行处理之后的一个状态
-            for(int i=0;i<len2;++i)
+            for(size_t i=0;i<len2;++i)
             {
                 try
                 {
@@ -431,29 +558,69 @@ void  tcp_server::communication(const int& client_fd)
             break; //否则直接关闭对客户端的连接
         }
     }
-   
+    cmy::trace_log(
+        "worker: communication loop exited fd=",
+        client_fd
+    );
     //清理map的中的元素
     {
+        cmy::trace_log(
+            "worker: before erase fd=",
+            client_fd
+        );
         std::lock_guard<std::mutex> _lk(this->_client_map_mutex);
         this->_client_map.erase(client_fd);
+        cmy::trace_log(
+        "worker: erase finished fd=",
+        client_fd
+        );
     }
+    cmy::trace_log(
+    "worker: before close fd=",
+    client_fd
+    );
     std::cout<<"服务端将连接客户端的fd关闭了"<<std::endl;
     close(client_fd);
+    cmy::trace_log(
+    "worker: communication return fd=",
+    client_fd
+    );
 }
 void tcp_server::stop_server()
 {
+    cmy::trace_log("stop_server(): begin");
     //停止服务端的运行,这里服务端从while中的accept中已经退出了,所以为了按照唤醒子进程,然后子进程结束
     //通信关闭fd,然后主线程调用join来回收内核线程的资源,取消与内核线程的关联,然后子线程就可以正常析构了
     //然后主线程也可以正常的进行析构了
-    this->_server_status.store(false);
+    bool was_running=this->_server_status.exchange(false);
+    cmy::trace_log(
+        "stop_server(): exchange(false), old_status=",
+        was_running
+    );
+    if(!was_running)
     {
-        std::lock_guard<std::mutex> (this->_client_map_mutex);
+        cmy::trace_log("stop_server(): already stopped, return");
+        return ;//走这一步证明已经被stop过了,就不用再执行唤醒操作了
+    }
+    {
+        std::lock_guard<std::mutex> _lk(this->_client_map_mutex);
         for(auto & e:this->_client_map)
         {
+            cmy::trace_log(
+                "stop_server(): before shutdown fd=",
+                e.first
+            );
             //进行唤醒操作,进行双向的关闭连接
-            shutdown(e.first,SHUT_RDWR);
+            int ret =shutdown(e.first,SHUT_RDWR);
+            cmy::trace_log(
+            "stop_server(): after shutdown fd=",
+            e.first,
+            ", ret=",
+            ret
+        );
         }
     } 
+    cmy::trace_log("stop_server(): end");
 }
 //知识仓库进行一个初始化,里面假如加了十条常用的回复语
 void tcp_server::init_Knowledge_Base()

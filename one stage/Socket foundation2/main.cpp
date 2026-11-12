@@ -34,9 +34,16 @@ int main(int argc,char* argv[])
             if(port>=1024&&port<=49151)
             {
                      //创建tcp_server服务器,然后程序继续进行
-                    tcp_server my_tcp("0.0.0.0",port);
+                    tcp_server my_tcp_server("0.0.0.0",port);
                     //开启子线程,让子线程执行my_tcp.start_server操作
-                    std::thread tcp_server_thread(&tcp_server::start_server,&my_tcp);
+                    try
+                    {
+                        my_tcp_server.start();
+                    }
+                    catch(const std::exception& e)
+                    {
+                        std::cerr << e.what() << '\n';
+                    }
                     //主线程继续执行后续的操作
                     std::string terminal_command;
                     while(true)
@@ -47,14 +54,9 @@ int main(int argc,char* argv[])
                         if(terminal_command.compare("quit")==0)
                         {
                             //执行my_tcp中的终止函数
-                            my_tcp.stop_server();
+                            my_tcp_server.stop_server();
                             break;
                         }
-                    }
-                    if(tcp_server_thread.joinable())
-                    {
-                        //阻塞等待子线程结束
-                        tcp_server_thread.join();
                     }
             }
             else

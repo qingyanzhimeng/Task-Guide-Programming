@@ -21,7 +21,7 @@
 struct client_address
 {
     std::string _ip;
-    int _port;
+    uint16_t _port;
     //打印客户端的连接信息
     void client_address_print();
 };
@@ -32,13 +32,17 @@ public:
 tcp_server(std::string ip="0.0.0.0",int port=8080);
 //删除拷贝构造函数,不允许值拷贝,防止资源泄露或者重复释放资源
 tcp_server(const tcp_server& my_server)=delete;
+//删除赋值构造
+tcp_server& operator=(tcp_server& server)=delete;
 ~tcp_server();//析构函数
-void start_server();//开启服务的接口
+//用于调用start_server()的一个接口函数
+void start();
 //tcp_server进行一个停止服务,停止服务了,首先要保证子线程先进行退出,执行关闭连接的操作
 void stop_server();
 private:
+void start_server();//开启服务的接口
 //在暂存命令string中找到此时此刻完整的命令,_str是暂存命令的暂存区,然后commands这个就是我们解析之后的命令
-void  get_all_commands(const int& client_fd,std::string& _pending,std::vector<std::string> & commands);
+void  get_all_commands(std::string& _pending,std::vector<std::string> & commands);
 //进行单客户端通信
 void  communication(const int& client_fd);
 //处理单条命令的函数
@@ -48,6 +52,8 @@ void process_echo(const int& client_fd,const std::string& command);
 void init_Knowledge_Base(); 
 //给listen监听套接字设置超时设置
 bool set_listen_timeout();
+//对worker客户端进行一个join
+void join_workers();
 private:
     //对于传入的ip我们用字符串表示，可以用点分十进制来表示
     std::string _ip_adress;
@@ -57,7 +63,7 @@ private:
     bool _status;//表示服务器在创建的过程中的状态
     std::map<std::string,std::string> _knowledge_base; //知识库,用于回复客户端的内容
     std::mutex _client_map_mutex;//互斥访问_client_map的互斥锁
-    std::mutex _knowledge_base_mutex;//互斥访问_knowledge_base的互斥锁
     std::vector<std::thread> _vector_thread; //保存线程的线程容器
     std::atomic<bool> _server_status;//这个表示服务器的接收连接的状态,如果不想继续接收了可以设置为false;
+    std::thread _start_server_thread;//这个线程表示负责调用start_server的一个线程
 };
